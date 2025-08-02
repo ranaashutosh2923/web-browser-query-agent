@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Browser Query Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-search"></i> Web Browser Query Agent</h1>
+                <p>Intelligent web search with AI-powered query processing</p>
+            </div>
+            <div class="header-actions">
+                <button id="statusBtn" class="btn-secondary">
+                    <i class="fas fa-info-circle"></i> Status
+                </button>
+                <button id="themeToggle" class="btn-secondary">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Query Interface -->
+        <main class="main-content">
+            <div class="query-section">
+                <div class="query-input-container">
+                    <div class="input-group">
+                        <input type="text" 
+                               id="queryInput" 
+                               placeholder="Enter your query (e.g., 'Best places to visit in Delhi')"
+                               autocomplete="off">
+                        <button id="searchBtn" class="btn-primary">
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                    <div class="query-examples">
+                        <p>Try these examples:</p>
+                        <div class="examples">
+                            <button class="example-btn" data-query="Best programming languages to learn in 2024">Programming languages</button>
+                            <button class="example-btn" data-query="How to start a startup">Startup advice</button>
+                            <button class="example-btn" data-query="Climate change effects">Climate change</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator hidden">
+                <div class="loading-spinner"></div>
+                <p>Processing your query...</p>
+                <div class="loading-steps">
+                    <div class="step" id="step1">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Validating query</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <i class="fas fa-search"></i>
+                        <span>Searching for similar queries</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <i class="fas fa-globe"></i>
+                        <span>Scraping web content</span>
+                    </div>
+                    <div class="step" id="step4">
+                        <i class="fas fa-brain"></i>
+                        <span>Generating summary</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="results-section hidden">
+                <div class="result-header">
+                    <h2 id="resultTitle">Search Results</h2>
+                    <div class="result-meta">
+                        <span id="processingTime"></span>
+                        <span id="cacheStatus"></span>
+                    </div>
+                </div>
+
+                <div id="resultContent" class="result-content">
+                    <!-- Results will be inserted here -->
+                </div>
+
+                <div id="sourcesSection" class="sources-section">
+                    <h3><i class="fas fa-link"></i> Sources</h3>
+                    <div id="sourcesList" class="sources-list">
+                        <!-- Sources will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Section -->
+            <div id="errorSection" class="error-section hidden">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3 id="errorTitle">Error</h3>
+                    <p id="errorMessage"></p>
+                    <button id="retryBtn" class="btn-primary">
+                        <i class="fas fa-redo"></i> Try Again
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- System Status Modal -->
+        <div id="statusModal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-server"></i> System Status</h3>
+                    <button id="closeModal" class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="statusContent">
+                        <!-- Status content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Web Browser Query Agent. Built with AI and modern web technologies.</p>
+                <div class="footer-links">
+                    <a href="#" id="aboutLink">About</a>
+                    <a href="#" id="helpLink">Help</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
